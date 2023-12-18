@@ -7,7 +7,12 @@
 
 import Foundation
 import MyView
+import MyLib2
 
 struct ContentView {
     let myView = MyView(hey: "hey", hello: "hello")
+
+    func hello() {
+        MyLib2.hello()
+    }
 }

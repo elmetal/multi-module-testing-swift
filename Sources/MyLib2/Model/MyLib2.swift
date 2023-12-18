@@ -9,7 +9,8 @@ import Foundation
 import MyModel
 
 public struct MyLib2 {
-    func hello() {
-        MyModel(hey: "hey", hello: "hello")
+    public static func hello() {
+//        MyModel(hey: "hey", hello: "hello")
+        print("hello world")
     }
 }

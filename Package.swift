@@ -13,14 +13,15 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "Sources/MyLib"),
-//        .package(path: "Sources/MyLib2"),
+        .package(path: "Sources/MyLib2"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "multi-module-testing-swift",
-            dependencies: [.product(name: "MyLib", package: "MyLib")],
+            dependencies: [.product(name: "MyLib", package: "MyLib"),
+                           .product(name: "MyLib2", package: "MyLib2")],
             path: "Sources/App"
         ),
         .testTarget(
