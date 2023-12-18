@@ -4,29 +4,32 @@
 import PackageDescription
 
 let package = Package(
-    name: "multi-module-testing-swift",
+    name: "MyPackage",
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "multi-module-testing-swift",
-            targets: ["multi-module-testing-swift"]),
-    ],
-    dependencies: [
-        .package(path: "Sources/MyLib"),
-//        .package(path: "Sources/MyLib2"),
+            name: "MyLib",
+            targets: ["MyModel", "MyView"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "multi-module-testing-swift",
-            dependencies: [.product(name: "MyLib", package: "MyLib")],
-            path: "Sources/App"
+            name: "MyModel",
+            path: "Sources/Model"
+        ),
+        .target(
+            name: "MyView",
+            dependencies: ["MyModel"],
+            path: "Sources/View"
         ),
         .testTarget(
-            name: "multi-module-testing-swiftTests",
-            dependencies: ["multi-module-testing-swift"],
-            path: "Tests/App"
-        ),
+            name: "ModelTests",
+            dependencies: ["MyModel"],
+            path: "Tests/Model"),
+        .testTarget(
+            name: "ViewTests",
+            dependencies: ["MyView"],
+            path: "Tests/View"),
     ]
 )
